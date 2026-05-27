@@ -3,173 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NX1 Esports - Premier Gaming Platform</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Font Awesome Icons -->
+    <title>NX1 Esports | Premier Gaming Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap');
         .font-gaming { font-family: 'Orbitron', sans-serif; }
-        .font-body { font-family: 'Poppins', sans-serif; }
-        .glow-effect:hover { box-shadow: 0 0 15px #ef4444; }
+        .font-body { font-family: 'Rajdhani', sans-serif; }
+        
+        /* Premium Tech Cyber Grid Background */
+        body {
+            background-color: #050508;
+            background-image: linear-gradient(rgba(239, 68, 68, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(239, 68, 68, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .neon-border-glow {
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        .neon-border-glow:hover {
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.4);
+            border-color: rgba(239, 68, 68, 0.6);
+        }
+        
+        /* Custom Scrollbar for Legal Content */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #0f1115;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #ef4444;
+            border-radius: 3px;
+        }
     </style>
 </head>
-<body class="bg-[#0b0c10] text-gray-200 font-body flex flex-col min-h-screen">
+<body class="text-gray-200 font-body flex flex-col min-h-screen selection:bg-red-600 selection:text-white">
 
-    <!-- NAVIGATION BAR -->
-    <nav class="bg-[#1f2833] border-b border-gray-800 sticky top-0 z-50">
+    <nav class="bg-[#090a0f]/90 border-b border-red-600/35 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
+            <div class="flex items-center justify-between h-20">
                 <div class="flex items-center">
-                    <span class="font-gaming text-2xl font-black tracking-wider text-red-550">NX1 <span class="text-white">ESPORTS</span></span>
+                    <span class="font-gaming text-2xl font-black tracking-widest bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]">
+                        NX1 <span class="text-white drop-shadow-none">ESPORTS</span>
+                    </span>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4 font-gaming text-sm tracking-wide">
-                        <a href="#home" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md transition">HOME</a>
-                        <a href="#refund" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md transition">REFUND POLICY</a>
-                        <a href="#terms" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md transition">TERMS & PRIVACY</a>
-                        <a href="#contact" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md transition">CONTACT US</a>
+                    <div class="ml-10 flex items-baseline space-x-6 font-gaming text-sm tracking-widest">
+                        <a href="#home" class="text-gray-300 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 px-1 py-2 transition duration-300">HOME</a>
+                        <a href="#refund" class="text-gray-300 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 px-1 py-2 transition duration-300">REFUND POLICY</a>
+                        <a href="#terms" class="text-gray-300 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 px-1 py-2 transition duration-300">TERMS & PRIVACY</a>
+                        <a href="#contact" class="text-gray-300 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 px-1 py-2 transition duration-300">SUPPORT</a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- MAIN CONTENT CONTAINER -->
     <main class="flex-grow">
 
-        <!-- 1. HOME PAGE SECTION -->
-        <section id="home" class="py-12">
+        <section id="home" class="py-16">
             <div class="max-w-5xl mx-auto px-4">
-                <!-- Main Banner (Black Background Image Placeholder) -->
-                <div class="w-full bg-black border border-gray-850 h-48 md:h-64 rounded-xl flex items-center justify-center mb-10 overflow-hidden relative shadow-2xl">
-                    <!-- Replace the src with your actual banner link later -->
-                    <div class="absolute inset-0 bg-radial from-transparent to-black opacity-70"></div>
-                    <h1 class="font-gaming text-3xl md:text-5xl font-black text-center tracking-widest text-white z-10">NX1 ESPORTS</h1>
+                
+                <div class="w-full bg-gradient-to-b from-[#0d0e12] to-[#050508] border border-red-600/20 h-56 md:h-72 rounded-2xl flex flex-col items-center justify-center mb-12 overflow-hidden relative shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.12)_0%,transparent_70%)]"></div>
+                    <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+                    
+                    <h1 class="font-gaming text-4xl md:text-6xl font-black text-center tracking-widest bg-gradient-to-b from-white via-gray-200 to-gray-500 bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,1)] mb-2">
+                        NX1 ESPORTS
+                    </h1>
+                    <div class="w-24 h-[3px] bg-red-600 rounded-full shadow-[0_0_10px_#ef4444]"></div>
                 </div>
 
-                <!-- Intro Text Box -->
-                <div class="bg-[#1f2833]/50 border border-gray-800 p-6 rounded-xl text-center max-w-2xl mx-auto mb-8">
-                    <p class="text-lg md:text-xl font-semibold tracking-wide text-gray-100">
+                <div class="bg-[#111318]/80 border border-gray-800/80 p-5 rounded-xl text-center max-w-2xl mx-auto mb-12 shadow-lg backdrop-blur-sm">
+                    <p class="text-xl md:text-2xl font-bold tracking-wide bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent">
                         "India's Premier Mobile Gaming & Esports Tournament Platform."
                     </p>
                 </div>
 
-                <!-- Download Android App Button -->
-                <div class="text-center mb-16">
-                    <a href="#" class="glow-effect inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-gaming text-lg font-bold px-8 py-4 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg">
-                        <i class="fab fa-android mr-3 text-2xl"></i> DOWNLOAD ANDROID APP
+                <div class="text-center mb-20">
+                    <a href="#" class="inline-flex items-center justify-center bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-gaming text-xl font-black tracking-widest px-10 py-5 rounded-xl transition duration-300 transform hover:scale-105 shadow-[0_0_30px_rgba(239,68,68,0.3)] hover:shadow-[0_0_40px_rgba(239,68,68,0.5)] border border-red-400/30">
+                        <i class="fab fa-android mr-4 text-3xl animate-pulse"></i> DOWNLOAD ANDROID APP
                     </a>
                 </div>
 
-                <!-- Features Section -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                    <div class="bg-[#1f2833] border border-gray-800 p-6 rounded-xl text-center hover:border-red-600 transition">
-                        <div class="text-red-500 text-3xl mb-3"><i class="fas fa-gamepad"></i></div>
-                        <h3 class="font-gaming font-bold text-base mb-1 text-white">Daily Free Fire Max Tournaments</h3>
+                    <div class="bg-[#0e1014] border border-gray-900 p-8 rounded-xl text-center hover:border-red-600/50 transition duration-300 transform hover:-translate-y-1 shadow-md group">
+                        <div class="text-red-500 text-4xl mb-4 group-hover:scale-110 transition duration-300"><i class="fas fa-gamepad"></i></div>
+                        <h3 class="font-gaming font-bold text-lg mb-2 text-white tracking-wide">Daily Free Fire Max Tournaments</h3>
+                        <p class="text-sm text-gray-400">Join elite rooms, showcase your strategic gameplay and dominate leaderboards daily.</p>
                     </div>
-                    <div class="bg-[#1f2833] border border-gray-800 p-6 rounded-xl text-center hover:border-red-600 transition">
-                        <div class="text-red-500 text-3xl mb-3"><i class="fas fa-shield-alt"></i></div>
-                        <h3 class="font-gaming font-bold text-base mb-1 text-white">100% Anti-Cheat & Fair Play</h3>
+                    <div class="bg-[#0e1014] border border-gray-900 p-8 rounded-xl text-center hover:border-red-600/50 transition duration-300 transform hover:-translate-y-1 shadow-md group">
+                        <div class="text-red-500 text-4xl mb-4 group-hover:scale-110 transition duration-300"><i class="fas fa-shield-alt"></i></div>
+                        <h3 class="font-gaming font-bold text-lg mb-2 text-white tracking-wide">100% Anti-Cheat & Fair Play</h3>
+                        <p class="text-sm text-gray-400">Strict automated checks, internal log scanning, and absolute zero tolerance for hacks.</p>
                     </div>
-                    <div class="bg-[#1f2833] border border-gray-800 p-6 rounded-xl text-center hover:border-red-600 transition">
-                        <div class="text-red-500 text-3xl mb-3"><i class="fas fa-bolt"></i></div>
-                        <h3 class="font-gaming font-bold text-base mb-1 text-white">Instant Wallet Withdrawals</h3>
+                    <div class="bg-[#0e1014] border border-gray-900 p-8 rounded-xl text-center hover:border-red-600/50 transition duration-300 transform hover:-translate-y-1 shadow-md group">
+                        <div class="text-red-500 text-4xl mb-4 group-hover:scale-110 transition duration-300"><i class="fas fa-bolt"></i></div>
+                        <h3 class="font-gaming font-bold text-lg mb-2 text-white tracking-wide">Instant Wallet Withdrawals</h3>
+                        <p class="text-sm text-gray-400">Lightning fast automated distributions directly credited straight into your secure wallet balance.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <hr class="border-gray-900 my-12">
+        <div class="max-w-5xl mx-auto px-4"><hr class="border-gray-900/50 my-8"></div>
 
-        <!-- 2. REFUND POLICY PAGE SECTION -->
-        <section id="refund" class="py-12 scroll-mt-20">
+        <section id="refund" class="py-16 scroll-mt-24">
             <div class="max-w-4xl mx-auto px-4">
-                <!-- Clean Black Banner Header -->
-                <div class="w-full bg-black border border-gray-850 py-10 rounded-t-xl flex items-center justify-center text-center">
-                    <h2 class="font-gaming text-2xl md:text-4xl font-black text-white tracking-wide">REFUND AND CANCELLATION POLICY</h2>
+                <div class="w-full bg-gradient-to-r from-red-950/20 via-black to-red-950/20 border border-red-600/25 py-8 rounded-t-2xl flex items-center justify-center text-center shadow-lg">
+                    <h2 class="font-gaming text-2xl md:text-3xl font-black text-white tracking-widest drop-shadow-[0_0_8px_rgba(239,68,68,0.3)]">REFUND AND CANCELLATION POLICY</h2>
                 </div>
                 
-                <!-- Hacker/Glitch Condition Content Box -->
-                <div class="bg-[#1f2833] border-x border-b border-gray-800 p-8 rounded-b-xl space-y-6 text-gray-300 leading-relaxed">
-                    <p class="font-semibold text-red-400">At NX1 Esports, we ensure a fair and transparent gaming ecosystem. Please read our rules regarding refunds carefully:</p>
-                    <ul class="list-disc list-inside space-y-3">
-                        <li><strong class="text-white">Hacker/Cheater Policy:</strong> If any player is found using third-party hacks, ghost clients, or modifications inside the match, they will be instantly disqualified. No refunds will be provided for entry fees in this case.</li>
-                        <li><strong class="text-white">Technical Glitches:</strong> If a tournament match is cancelled from our end due to server crashes or platform technical issues, the full registration amount will be credited back to the player's wallet instantly.</li>
-                        <li><strong class="text-white">Player No-Show:</strong> If a player fails to join the room before the start time using their correct registered UID and Username, no refunds will be issued.</li>
-                    </ul>
+                <div class="bg-[#0b0c10] border-x border-b border-red-600/10 p-8 rounded-b-2xl space-y-8 text-gray-300 leading-relaxed text-base shadow-2xl">
+                    <p class="text-gray-400 font-medium border-l-2 border-red-600 pl-4">Thank you for choosing NX1 Esports. We strive to provide a fair, transparent, and competitive gaming environment. Please read our refund and cancellation policy carefully before registering for any tournament or match:</p>
+                    
+                    <div class="bg-[#0e1014] border border-gray-900/60 p-5 rounded-xl">
+                        <h3 class="text-red-500 font-gaming font-bold text-lg mb-3 flex items-center"><i class="fas fa-check-circle mr-2"></i> 1. Match Cancellations & Technical Issues (Refund Eligible)</h3>
+                        <p class="mb-3 text-gray-400 text-sm">Full refunds will be credited back directly to the user's platform wallet within 24-48 hours under the following exceptional circumstances:</p>
+                        <ul class="space-y-3 text-sm pl-2">
+                            <li class="flex items-start"><i class="fas fa-angle-right text-red-500 mt-1 mr-2"></i><span><strong class="text-white">Hacker/Cheater Inbound:</strong> If a match is disrupted, ruined, or cancelled due to the presence of a hacker or cheater, and verified by our moderation team, the entry fee will be fully refunded to all affected fair players.</span></li>
+                            <li class="flex items-start"><i class="fas fa-angle-right text-red-500 mt-1 mr-2"></i><span><strong class="text-white">Technical Glitches:</strong> If a match cannot be completed or started due to technical glitches, server crashes, room hosting errors, or unforeseen administrative issues from NX1 Esports' end.</span></li>
+                            <li class="flex items-start"><i class="fas fa-angle-right text-red-500 mt-1 mr-2"></i><span><strong class="text-white">Cancellation by Platform:</strong> If a tournament is cancelled by the organizers for any other internal reason.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-[#0e1014] border border-gray-900/60 p-5 rounded-xl">
+                        <h3 class="text-red-500 font-gaming font-bold text-lg mb-3 flex items-center"><i class="fas fa-times-circle mr-2"></i> 2. User-End Cancellations & Non-Participation (Strictly Non-Refundable)</h3>
+                        <p class="mb-3 text-gray-400 text-sm">No refunds or entry fee reversals will be provided under these conditions:</p>
+                        <ul class="space-y-3 text-sm pl-2">
+                            <li class="flex items-start"><i class="fas fa-angle-right text-red-500 mt-1 mr-2"></i><span><strong class="text-white">Self-Withdrawal:</strong> Once a player successfully pays the entry fee and reserves a slot, they cannot claim a refund if they change their mind or wish to leave the match. You must participate in the registered match.</span></li>
+                            <li class="flex items-start"><i class="fas fa-angle-right text-red-500 mt-1 mr-2"></i><span><strong class="text-white">No-Show / Absent:</strong> If a user registers for a match but fails to join the custom room, or misses the match start time due to personal reasons, internet issues, or device failure, their entry fee will be forfeited.</span></li>
+                            <li class="flex items-start"><i class="fas fa-angle-right text-red-500 mt-1 mr-2"></i><span><strong class="text-white">Disqualification:</strong> If a player is caught hacking, cheating, teaming up, or breaking the tournament rules, they will be disqualified immediately, and no refund will be issued.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-[#0e1014] border border-gray-900/60 p-5 rounded-xl">
+                        <h3 class="text-red-500 font-gaming font-bold text-lg mb-3 flex items-center"><i class="fas fa-wallet mr-2"></i> 3. Refund Mechanism</h3>
+                        <ul class="space-y-3 text-sm pl-2">
+                            <li class="flex items-start"><i class="fas fa-angle-right text-red-500 mt-1 mr-2"></i><span>All eligible refunds (due to cancellation, hackers, or glitches) will be processed automatically and credited directly into the User's NX1 Esports Wallet.</span></li>
+                            <li class="flex items-start"><i class="fas fa-angle-right text-red-500 mt-1 mr-2"></i><span>Wallet balance can be used to join future tournaments listed on the platform. For any balance or transaction-related disputes, players can contact our support team through the Contact Us page with valid screenshots/proofs.</span></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <hr class="border-gray-900 my-12">
+        <div class="max-w-5xl mx-auto px-4"><hr class="border-gray-900/50 my-8"></div>
 
-        <!-- 3. TERMS & PRIVACY PAGES SECTION (Standard for Payment Gateways) -->
-        <section id="terms" class="py-12 scroll-mt-20">
+        <section id="terms" class="py-16 scroll-mt-24">
             <div class="max-w-4xl mx-auto px-4">
-                <!-- Simple Clean Black Header -->
-                <div class="bg-black py-4 px-6 border border-gray-850 rounded-t-xl">
-                    <h2 class="font-gaming text-xl font-bold text-white tracking-wide">Terms of Service & Privacy Policy</h2>
+                <div class="bg-gradient-to-r from-gray-950 via-black to-gray-950 py-5 px-6 border border-gray-800 rounded-t-2xl shadow-md">
+                    <h2 class="font-gaming text-xl font-bold text-white tracking-widest flex items-center"><i class="fas fa-gavel text-red-500 mr-2"></i> TERMS OF SERVICE & PRIVACY POLICY</h2>
                 </div>
                 
-                <!-- Standard Plain Text Box for Quick Approvals -->
-                <div class="bg-[#1f2833] border-x border-b border-gray-800 p-8 rounded-b-xl text-sm text-gray-400 space-y-6 max-h-96 overflow-y-auto leading-relaxed">
-                    <div>
-                        <h3 class="text-white font-bold text-base mb-2">1. Terms of Service</h3>
+                <div class="bg-[#0b0c10] border-x border-b border-gray-900 p-8 rounded-b-2xl text-sm text-gray-400 space-y-8 max-h-[450px] overflow-y-auto custom-scroll leading-relaxed shadow-2xl">
+                    
+                    <div class="space-y-3">
+                        <h3 class="text-white font-gaming font-bold text-base border-b border-gray-800 pb-2 flex items-center"><i class="fas fa-file-alt text-red-500 mr-2"></i> 1. Terms of Service</h3>
                         <p>Welcome to NX1 Esports. By accessing our platform, website, or mobile application, you agree to comply with and be bound by the following terms and conditions. The platform allows users to register for mobile gaming tournaments using their in-game User IDs (UIDs) and usernames. Any commercial misuse or fraudulent activity on the platform will lead to permanent account termination.</p>
+                        <p>Users must guarantee that all account detail records submitted are authentic. Sharing account access profiles, credentials, or teaming metrics with unauthorized users to falsify competition placements is prohibited and metrics remain audited via dedicated tournament administrative panels.</p>
                     </div>
-                    <div>
-                        <h3 class="text-white font-bold text-base mb-2">2. Privacy & Data Protection</h3>
-                        <p>We respect your privacy. NX1 Esports collects basic user data such as mobile numbers, emails, and game identifiers (UIDs) solely for organizing tournaments, verification, and processing payouts. We do not sell or share your personal data with third-party advertising networks. All financial transactions are processed securely via encrypted payment gateways (Razorpay/PayU).</p>
+                    
+                    <div class="space-y-3 border-t border-gray-900 pt-6">
+                        <h3 class="text-white font-gaming font-bold text-base border-b border-gray-800 pb-2 flex items-center"><i class="fas fa-user-shield text-red-500 mr-2"></i> 2. Privacy Policy</h3>
+                        <p class="text-gray-300 font-medium">At NX1 Esports, we are committed to protecting your privacy and ensuring a secure experience on our platform. This Privacy Policy explains how we collect, use, and safeguard your personal information.</p>
+                        
+                        <div class="mt-4 space-y-2 pl-2">
+                            <p class="text-white font-semibold">A. Information We Collect</p>
+                            <ul class="list-disc list-inside space-y-1.5 pl-2 text-gray-400">
+                                <li><strong class="text-gray-300">Personal Data:</strong> When you register an account, we collect basic details including your name, email address, and mobile number.</li>
+                                <li><strong class="text-gray-300">In-Game Information:</strong> To verify match participation and score tournaments accurately, we collect your specific in-game usernames and unique game identifiers (UIDs).</li>
+                                <li><strong class="text-gray-300">Transaction Data:</strong> We collect information related to your wallet top-ups and tournament entry fees. Full payment credentials are encrypted and processed by our secure, certified payment gateway partners.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4 space-y-2 pl-2">
+                            <p class="text-white font-semibold">B. How We Use Your Information</p>
+                            <p class="text-gray-400 mb-1">We use the collected data to:</p>
+                            <ul class="list-disc list-inside space-y-1.5 pl-2 text-gray-400">
+                                <li>Create, manage, and verify your user account and profile.</li>
+                                <li>Organize, moderate, and validate tournament participation and leaderboard standings.</li>
+                                <li>Process secure financial transactions and top-ups.</li>
+                                <li>Detect, prevent, and mitigate fraudulent behavior, cheating, or unauthorized activities.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4 space-y-2 pl-2">
+                            <p class="text-white font-semibold">C. Data Sharing and Security</p>
+                            <ul class="list-disc list-inside space-y-1.5 pl-2 text-gray-400">
+                                <li>We do not sell, rent, or trade your personal data to third parties for marketing purposes.</li>
+                                <li>We implement standard technical security measures to safeguard your data. While we work diligently to use commercially acceptable means to protect your personal details, no method of transmission over the internet is 100% secure.</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-white font-bold text-base mb-2">3. Payment & Gateway Verification</h3>
+                    
+                    <div class="space-y-3 border-t border-gray-900 pt-6">
+                        <h3 class="text-white font-gaming font-bold text-base border-b border-gray-800 pb-2 flex items-center"><i class="fas fa-credit-card text-red-500 mr-2"></i> 3. Payment & Gateway Verification</h3>
                         <p>All deposits and entry fee payments made on the platform are processed through secure channels. Users must ensure that the payment details used belong to them. NX1 Esports is not responsible for failed transactions caused by bank server downtimes.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <hr class="border-gray-900 my-12">
+        <div class="max-w-5xl mx-auto px-4"><hr class="border-gray-900/50 my-8"></div>
 
-        <!-- 4. CONTACT US PAGE SECTION -->
-        <section id="contact" class="py-12 scroll-mt-20 mb-16">
+        <section id="contact" class="py-16 scroll-mt-24 mb-20">
             <div class="max-w-xl mx-auto px-4">
-                <div class="text-center mb-8">
-                    <h2 class="font-gaming text-3xl font-black tracking-wide text-white">SUPPORT</h2>
-                    <p class="text-gray-400 text-sm mt-1">Have questions or payment issues? Get in touch with us.</p>
+                <div class="text-center mb-10">
+                    <h2 class="font-gaming text-3xl font-black tracking-widest text-white drop-shadow-[0_0_8px_rgba(239,68,68,0.2)]">SUPPORT CENTER</h2>
+                    <p class="text-gray-400 text-sm mt-2 font-medium tracking-wide">Have queries or transactional status issues? Connect directly with us via mail.</p>
                 </div>
                 
-                <!-- Clean Contact Format -->
-                <div class="bg-[#1f2833] border border-gray-800 p-8 rounded-xl space-y-6">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-red-600/10 border border-red-500/30 text-red-500 p-3 rounded-lg text-xl">
-                            <i class="fas fa-envelope"></i>
+                <div class="bg-[#0e1014] border border-gray-900 p-8 rounded-2xl shadow-xl hover:border-red-600/30 transition duration-300 transform hover:scale-[1.02]">
+                    <div class="flex flex-col items-center justify-center text-center space-y-4">
+                        <div class="bg-gradient-to-br from-red-600/20 to-red-900/10 border border-red-500/30 text-red-500 p-4 rounded-xl text-3xl shadow-inner">
+                            <i class="fas fa-envelope-open-text"></i>
                         </div>
-                        <div>
-                            <p class="text-xs text-gray-400 uppercase tracking-wider font-bold">Business Email</p>
-                            <p class="text-white font-medium">support@nx1esports.com</p>
+                        <div class="space-y-1">
+                            <p class="text-xs text-gray-500 uppercase tracking-widest font-black">Official Business Email</p>
+                            <p class="text-xl text-white font-semibold font-gaming tracking-wide selection:bg-red-600">support@nx1esports.com</p>
                         </div>
-                    </div>
-
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-red-600/10 border border-red-500/30 text-red-500 p-3 rounded-lg text-xl">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-400 uppercase tracking-wider font-bold">Support Hotline</p>
-                            <p class="text-white font-medium">+91 XXXXXXXXXX</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-red-600/10 border border-red-500/30 text-red-500 p-3 rounded-lg text-xl">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-400 uppercase tracking-wider font-bold">Business Address</p>
-                            <p class="text-white font-medium text-sm">Dehradun, Uttarakhand, India - 248001</p>
+                        <div class="pt-2">
+                            <a href="mailto:support@nx1esports.com" class="inline-flex text-xs font-gaming font-bold bg-red-600/10 border border-red-600/30 text-red-400 px-4 py-2 rounded-md hover:bg-red-600 hover:text-white transition duration-300">
+                                Open Mail Application
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -178,9 +240,8 @@
 
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-black border-t border-gray-900 py-6 text-center text-xs text-gray-500 font-gaming tracking-wider">
-        &copy; 2026 NX1 ESPORTS. ALL RIGHTS RESERVED.
+    <footer class="bg-[#050508] border-t border-gray-950 py-8 text-center text-xs text-gray-500 font-gaming tracking-widest">
+        &copy; 2026 <span class="text-gray-400 font-bold">NX1 ESPORTS</span>. ALL RIGHTS RESERVED.
     </footer>
 
 </body>
