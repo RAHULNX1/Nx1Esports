@@ -12,7 +12,7 @@
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Firebase Configuration (Directly linked to your true project)
+        // Verified Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDefwjI2MLvgbwHKkq7gxZulkHyYm5Fj90",
             authDomain: "tournament-app-33675.firebaseapp.com",
@@ -123,7 +123,7 @@
         }
     </style>
 </head>
-<body class="text-gray-200 font-body class=flex flex-col min-h-screen selection:bg-red-600 selection:text-white">
+<body class="text-gray-200 font-body flex flex-col min-h-screen selection:bg-red-600 selection:text-white">
 
     <nav class="bg-[#090a0f]/90 border-b border-red-600/35 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -165,7 +165,7 @@
                     <label class="block text-xs uppercase tracking-widest text-gray-400 font-gaming mb-1.5">Password</label>
                     <input type="password" name="password" required class="w-full bg-[#111318] border border-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-red-500 text-white">
                 </div>
-                <button type="submit" class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-gaming tracking-widest font-black py-3 rounded-lg shadow-lg transition duration-300">ENTER ARENA</button>
+                <button type="submit" class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-gaming tracking-widest font-black py-3 rounded-lg shadow-lg transition duration-300">LOGIN</button>
             </form>
 
             <form id="register-form" onsubmit="event.preventDefault(); window.authAction.register(this.email.value, this.password.value, this.username.value);" class="space-y-4 hidden">
