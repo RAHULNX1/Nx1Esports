@@ -6,12 +6,94 @@
     <title>NX1 Esports | Premier Gaming Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Firebase Configuration (Directly linked to your project)
+        const firebaseConfig = {
+            apiKey: "AIzaSyB" + "your_remaining_api_key_here", // Add full key if needed, matched from screenshot
+            authDomain: "nx1-esports-3f1df.firebaseapp.com",
+            projectId: "nx1-esports-3f1df",
+            storageBucket: "nx1-esports-3f1df.firebasestorage.app",
+            messagingSenderId: "763321590457",
+            appId: "1:763321590457:web:7f6fbb1be1ee9e1c2a1c0d"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Global instances for UI interaction
+        window.authAction = {
+            register: (email, password, username) => {
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then(async (userCredential) => {
+                        const user = userCredential.user;
+                        // Create user profile document inside Firestore 'users' collection
+                        await setDoc(doc(db, "users", user.uid), {
+                            uid: user.uid,
+                            email: email,
+                            username: username,
+                            wallet_balance: 0,
+                            createdAt: new Date().toISOString()
+                        });
+                        alert("Registration Successful, Welcome to NX1!");
+                        toggleAuthModal();
+                    }).catch(error => alert(error.message));
+            },
+            login: (email, password) => {
+                signInWithEmailAndPassword(auth, email, password)
+                    .then(() => {
+                        alert("Logged In Successfully!");
+                        toggleAuthModal();
+                    }).catch(error => alert(error.message));
+            },
+            logout: () => {
+                signOut(auth).then(() => alert("Logged Out!"));
+            }
+        };
+
+        // Monitor Auth State Changes to Toggle UI Components
+        let unsubscribeWallet = null;
+        onAuthStateChanged(auth, (user) => {
+            const authBtn = document.getElementById("auth-nav-btn");
+            const walletDisplay = document.getElementById("wallet-display");
+            
+            if (user) {
+                authBtn.innerHTML = `<i class="fas fa-sign-out-alt mr-2"></i> LOGOUT`;
+                authBtn.onclick = () => window.authAction.logout();
+                walletDisplay.classList.remove("hidden");
+                
+                // Real-time listener for wallet balance synchronization from App/Firestore
+                unsubscribeWallet = onSnapshot(doc(db, "users", user.uid), (docSnap) => {
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        document.getElementById("balance-amt").innerText = data.wallet_balance || 0;
+                    }
+                });
+            } else {
+                authBtn.innerHTML = `<i class="fas fa-user-shield mr-2"></i> LOGIN / REGISTER`;
+                authBtn.onclick = () => toggleAuthModal();
+                walletDisplay.classList.add("hidden");
+                if (unsubscribeWallet) unsubscribeWallet();
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+        window.$crisp=[];window.CRISP_WEBSITE_ID="YOUR_CRISP_WEBSITE_ID"; // Setup account at crisp.chat to get your custom ID
+        (function(){d=document;s=d.createElement("s");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+    </script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght=500;700;900&family=Rajdhani:wght=500;600;700&display=swap');
         .font-gaming { font-family: 'Orbitron', sans-serif; }
         .font-body { font-family: 'Rajdhani', sans-serif; }
         
-        /* Premium Tech Cyber Grid Background */
         body {
             background-color: #050508;
             background-image: linear-gradient(rgba(239, 68, 68, 0.03) 1px, transparent 1px),
@@ -28,7 +110,6 @@
             border-color: rgba(239, 68, 68, 0.6);
         }
         
-        /* Custom Scrollbar for Legal Content */
         .custom-scroll::-webkit-scrollbar {
             width: 6px;
         }
@@ -41,7 +122,7 @@
         }
     </style>
 </head>
-<body class="text-gray-200 font-body flex flex-col min-h-screen selection:bg-red-600 selection:text-white">
+<body class="text-gray-200 font-body class=flex flex-col min-h-screen selection:bg-red-600 selection:text-white">
 
     <nav class="bg-[#090a0f]/90 border-b border-red-600/35 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,23 +132,87 @@
                         NX1 <span class="text-white drop-shadow-none">ESPORTS</span>
                     </span>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-6 font-gaming text-sm tracking-widest">
-                        <a href="#home" class="text-gray-300 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 px-1 py-2 transition duration-300">HOME</a>
-                        <a href="#refund" class="text-gray-300 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 px-1 py-2 transition duration-300">REFUND POLICY</a>
-                        <a href="#terms" class="text-gray-300 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 px-1 py-2 transition duration-300">TERMS & PRIVACY</a>
-                        <a href="#contact" class="text-gray-300 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 px-1 py-2 transition duration-300">SUPPORT</a>
-                    </div>
+                <div id="wallet-display" class="hidden flex items-center bg-red-600/10 border border-red-500/30 px-4 py-1.5 rounded-lg font-gaming text-sm">
+                    <i class="fas fa-wallet text-red-500 mr-2"></i>WALLET: <span class="text-white ml-1 font-bold">₹<span id="balance-amt">0</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 font-gaming text-sm tracking-widest">
+                    <a href="#home" class="text-gray-300 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 px-1 py-2 transition duration-300">HOME</a>
+                    <a href="#refund" class="text-gray-300 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 px-1 py-2 transition duration-300">REFUND POLICY</a>
+                    <a href="#terms" class="text-gray-300 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 px-1 py-2 transition duration-300">TERMS & PRIVACY</a>
+                    <a href="#contact" class="text-gray-300 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 px-1 py-2 transition duration-300">SUPPORT</a>
+                    <button id="auth-nav-btn" class="bg-red-600/20 border border-red-500/40 text-white font-gaming px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300 text-xs tracking-widest"></button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow">
+    <div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden p-4">
+        <div class="bg-[#0b0c10] border border-red-600/30 rounded-2xl w-full max-w-md p-8 relative shadow-[0_0_50px_rgba(239,68,68,0.2)]">
+            <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-xl"><i class="fas fa-times"></i></button>
+            
+            <div class="flex justify-center space-x-6 mb-6 font-gaming tracking-widest border-b border-gray-900 pb-3">
+                <button id="tab-login-btn" onclick="switchAuthTab('login')" class="text-red-500 font-bold text-lg border-b-2 border-red-500 pb-1">LOGIN</button>
+                <button id="tab-register-btn" onclick="switchAuthTab('register')" class="text-gray-500 hover:text-white text-lg pb-1">REGISTER</button>
+            </div>
 
+            <form id="login-form" onsubmit="event.preventDefault(); window.authAction.login(this.email.value, this.password.value);" class="space-y-4">
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-400 font-gaming mb-1.5">Email Address</label>
+                    <input type="email" name="email" required class="w-full bg-[#111318] border border-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-red-500 text-white">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-400 font-gaming mb-1.5">Password</label>
+                    <input type="password" name="password" required class="w-full bg-[#111318] border border-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-red-500 text-white">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-gaming tracking-widest font-black py-3 rounded-lg shadow-lg transition duration-300">ENTER ARENA</button>
+            </form>
+
+            <form id="register-form" onsubmit="event.preventDefault(); window.authAction.register(this.email.value, this.password.value, this.username.value);" class="space-y-4 hidden">
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-400 font-gaming mb-1.5">Esports Username</label>
+                    <input type="text" name="username" required class="w-full bg-[#111318] border border-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-red-500 text-white" placeholder="e.g. NX1_LEGEND">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-400 font-gaming mb-1.5">Email Address</label>
+                    <input type="email" name="email" required class="w-full bg-[#111318] border border-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-red-500 text-white">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-400 font-gaming mb-1.5">Create Password</label>
+                    <input type="password" name="password" required class="w-full bg-[#111318] border border-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-red-500 text-white">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-gaming tracking-widest font-black py-3 rounded-lg shadow-lg transition duration-300">CREATE ACCOUNT</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleAuthModal() {
+            const modal = document.getElementById("auth-modal");
+            modal.classList.toggle("hidden");
+        }
+        function switchAuthTab(tab) {
+            const loginForm = document.getElementById("login-form");
+            const regForm = document.getElementById("register-form");
+            const loginBtn = document.getElementById("tab-login-btn");
+            const regBtn = document.getElementById("tab-register-btn");
+
+            if (tab === 'login') {
+                loginForm.classList.remove("hidden");
+                regForm.classList.add("hidden");
+                loginBtn.className = "text-red-500 font-bold text-lg border-b-2 border-red-500 pb-1";
+                regBtn.className = "text-gray-500 hover:text-white text-lg pb-1";
+            } else {
+                loginForm.classList.add("hidden");
+                regForm.classList.remove("hidden");
+                regBtn.className = "text-red-500 font-bold text-lg border-b-2 border-red-500 pb-1";
+                loginBtn.className = "text-gray-500 hover:text-white text-lg pb-1";
+            }
+        }
+    </script>
+
+    <main class="flex-grow">
         <section id="home" class="py-16">
             <div class="max-w-5xl mx-auto px-4">
-                
                 <div class="w-full bg-gradient-to-b from-[#0d0e12] to-[#050508] border border-red-600/20 h-56 md:h-72 rounded-2xl flex flex-col items-center justify-center mb-12 overflow-hidden relative shadow-[0_0_40px_rgba(0,0,0,0.8)]">
                     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.12)_0%,transparent_70%)]"></div>
                     <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
@@ -86,7 +231,7 @@
                 </div>
 
                 <div class="text-center mb-20">
-                    <a href="#" class="inline-flex items-center justify-center bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-gaming text-xl font-black tracking-widest px-10 py-5 rounded-xl transition duration-300 transform hover:scale-105 shadow-[0_0_30px_rgba(239,68,68,0.3)] hover:shadow-[0_0_40px_rgba(239,68,68,0.5)] border border-red-400/30">
+                    <a href="#" class="inline-flex items-center justify-center bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-gaming text-xl font-black tracking-widest px-10 py-5 rounded-xl transition duration-300 transform scale-105 shadow-[0_0_30px_rgba(239,68,68,0.3)] hover:shadow-[0_0_40px_rgba(239,68,68,0.5)] border border-red-400/30">
                         <i class="fab fa-google-play mr-4 text-3xl animate-pulse"></i> DOWNLOAD ANDROID APP
                     </a>
                 </div>
@@ -125,7 +270,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -180,7 +324,6 @@
                 </div>
                 
                 <div class="bg-[#0b0c10] border-x border-b border-gray-900 p-8 rounded-b-2xl text-sm text-gray-400 space-y-8 max-h-[450px] overflow-y-auto custom-scroll leading-relaxed shadow-2xl">
-                    
                     <div class="space-y-3">
                         <h3 class="text-white font-gaming font-bold text-base border-b border-gray-800 pb-2 flex items-center"><i class="fas fa-file-alt text-red-500 mr-2"></i> 1. Terms of Service</h3>
                         <p>Welcome to NX1 Esports. By accessing our platform, website, or mobile application, you agree to comply with and be bound by the following terms and conditions. The platform allows users to register for mobile gaming tournaments using their in-game User IDs (UIDs) and usernames. Any commercial misuse or fraudulent activity on the platform will lead to permanent account termination.</p>
@@ -244,7 +387,7 @@
                         </div>
                         <div class="space-y-1">
                             <p class="text-xs text-gray-500 uppercase tracking-widest font-black">Official Business Email</p>
-                            <p class="text-xl text-white font-semibold font-gaming tracking-wide selection:bg-red-600">support@nx1esports.com</p>
+                            <p class="text-xl text-white font-semibold font-gaming tracking-wide">support@nx1esports.com</p>
                         </div>
                         <div class="pt-2">
                             <a href="mailto:support@nx1esports.com" class="inline-flex text-xs font-gaming font-bold bg-red-600/10 border border-red-600/30 text-red-400 px-4 py-2 rounded-md hover:bg-red-600 hover:text-white transition duration-300">
@@ -255,11 +398,11 @@
                 </div>
             </div>
         </section>
-
     </main>
 
-    <footer class="bg-[#050508] border-t border-gray-950 py-8 text-center text-xs text-gray-500 font-gaming tracking-widest">
-        &copy; 2026 <span class="text-gray-400 font-bold">NX1 ESPORTS</span>. ALL RIGHTS RESERVED.
+    <footer class="bg-[#050508] border-t border-gray-950 py-8 text-center text-xs text-gray-400 font-gaming tracking-widest space-y-2">
+        <div>&copy; 2026 <span class="text-white font-bold">NX1 ESPORTS</span>. ALL RIGHTS RESERVED.</div>
+        <div class="text-[10px] text-gray-600 tracking-normal font-sans uppercase">NX1 Esports is owned and operated by RAHUL TECH ENTERPRISES</div>
     </footer>
 
 </body>
