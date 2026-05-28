@@ -12,9 +12,8 @@
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Verified Firebase Configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyDefwjI2MLvgbwHKkq7gxZulkHyYm5Fj90",
+            apiKey: "AIzaSyCbAqwU4hFso92vHYNg4tf7uWh09gLxaK0",
             authDomain: "tournament-app-33675.firebaseapp.com",
             projectId: "tournament-app-33675",
             storageBucket: "tournament-app-33675.firebasestorage.app",
@@ -34,7 +33,6 @@
                 createUserWithEmailAndPassword(auth, email, password)
                     .then(async (userCredential) => {
                         const user = userCredential.user;
-                        // Create user profile document inside Firestore 'users' collection
                         await setDoc(doc(db, "users", user.uid), {
                             uid: user.uid,
                             email: email,
@@ -69,7 +67,6 @@
                 authBtn.onclick = () => window.authAction.logout();
                 walletDisplay.classList.remove("hidden");
                 
-                // Real-time listener for wallet balance synchronization from App/Firestore
                 unsubscribeWallet = onSnapshot(doc(db, "users", user.uid), (docSnap) => {
                     if (docSnap.exists()) {
                         const data = docSnap.data();
@@ -86,7 +83,7 @@
     </script>
 
     <script type="text/javascript">
-        window.$crisp=[];window.CRISP_WEBSITE_ID="YOUR_CRISP_WEBSITE_ID"; // Setup account at crisp.chat to get your custom ID
+        window.$crisp=[];window.CRISP_WEBSITE_ID="YOUR_CRISP_WEBSITE_ID"; 
         (function(){d=document;s=d.createElement("s");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
     </script>
 
